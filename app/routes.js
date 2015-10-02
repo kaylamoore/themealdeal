@@ -33,4 +33,20 @@ module.exports = function(app, passport) {
 		})
 	})
 
+	//	LOGOUT
+	//	======
+	app.get('/logout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	})
+
+};
+
+//route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+	//if authenticated move on
+	if (req.isAuthenticated())
+		return next();
+
+	res.redirect('/');
 }
