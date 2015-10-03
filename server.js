@@ -11,7 +11,8 @@ var express 		= require('express'),
 	configDB 		= require('./config/database.js'),
 	bodyParser 		= require('body-parser'),
 	flash			= require('connect-flash'),
-	dealRouter 		= require('./app/routes/dealRoutes');
+	dealRouter 		= require('./app/routes/dealRoutes'),
+	userRouter		= require('./app/routes/userRoutes');
 
 
 
@@ -30,6 +31,7 @@ app.use(bodyParser.json());
 app.use(flash());
 
 app.set('view engine', 'ejs'); //sets up ejs for templating
+app.engine('ejs', require('ejs').renderFile);
 
 // passport requirements
 app.use(session({ 
@@ -44,6 +46,7 @@ app.use(passport.session()); //persistent login session
 // 	ROUTES
 //	======
 require('./app/routes.js')(app, passport); //loads the routes and passes  in passport
+// app.use('/users', userRouter) when you get a request starting with users use the userRouter
 app.use('/deals', dealRouter) //when you get a request starting with deal use dealRouter
 //	LAUNCH
 //	======

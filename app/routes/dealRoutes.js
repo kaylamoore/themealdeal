@@ -13,4 +13,4 @@ dealRouter.route('/:deal_id')
 	.delete(dealsController.destroy) //deletes an individual deal
 
 
-	module.exports = dealRouter
+module.exports = dealRouter

@@ -4,7 +4,9 @@ function index (req, res) {
 //gets all deals
 	Deal.find(function(err, deals){
 	if(err) res.send (err)
-		res.json(deals)
+		// res.json(deals)
+		res.render('deals.ejs')
+
 	})
 }
 
