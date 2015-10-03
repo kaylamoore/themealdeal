@@ -23,12 +23,13 @@ app.use(morgan('dev'));
 app.use(cookieParser()); //reads cookies which are needed for authentication
 app.use(bodyParser()); // gets info from the html form 
 
+
 app.set('view engine', 'ejs'); //sets up ejs for templating
 
 // passport requirements
-// app.use(session({ secret: 'supersupersecret' }));
-// app.use(passport.initialize());
-// app.use(passport.session()); //persistent login session
+app.use(session({ secret: 'supersupersecret' }));
+app.use(passport.initialize());
+app.use(passport.session()); //persistent login session
 
 // 	ROUTES
 //	======
