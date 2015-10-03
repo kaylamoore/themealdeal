@@ -8,13 +8,13 @@ function index (req, res) {
 	})
 }
 
-function create (req. res) {
+function create (req, res) {
 	//makes a single deal
 	var deal 	= new Deal()
 
 	deal.title	= req.body.title
 	deal.price	= req.body.price
-	deal.date	= req.body.data
+	// deal.date	= req.body.data
 
 	deal.save(function(err){
 		if (err) res.send(err)			 
@@ -54,13 +54,13 @@ function destroy (req, res) {
 	}, function(err, deal){
 		if(err) res.send(err)
 		res.json({success: true, message: "Your deal was gobbled up!"})
-	}
+	})
 }
 
 module.exports = {
-	index: index,
-	create: create,
-	show: show, 
-	update: update,
-	destroy: destory
+	index	: index,
+	create : create,
+	show	: show, 
+	update	: update,
+	destroy : destroy
 }

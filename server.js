@@ -9,8 +9,9 @@ var express 		= require('express'),
 	cookieParser	= require('cookie-parser'),
 	session			= require('express-session'),
 	configDB 		= require('./config/database.js'),
-	bodyParser 		= require('body-parser');
-	flash			= require('connect-flash')
+	bodyParser 		= require('body-parser'),
+	flash			= require('connect-flash'),
+	dealRouter 		= require('./app/routes/dealRoutes');
 
 
 
@@ -43,7 +44,7 @@ app.use(passport.session()); //persistent login session
 // 	ROUTES
 //	======
 require('./app/routes.js')(app, passport); //loads the routes and passes  in passport
-app.use('/deal', dealRouter) //when you get a request starting with deal use dealRouter
+app.use('/deals', dealRouter) //when you get a request starting with deal use dealRouter
 //	LAUNCH
 //	======
 app.listen(port)
