@@ -29,6 +29,19 @@ module.exports = function(app, passport) {
 		successRedirect: '/profile', 
 		failureRedirect: '/signup'
 		}));
+
+	//	FACEBOOK ROUTES
+	//	===============
+	//	route for authetication and login
+	app.get('auth/facebook', passport.authenticate('facebook', {scope : 'email' }));
+
+	// call back after FB has authenticated
+	app.get('/auth/facebook/callback',
+		passport.authenticate('facebook', {
+			successRedirect : '/profile',
+			failureRedirect : '/'
+		}));
+
 	//	PROFILE
 	//	=======
 
