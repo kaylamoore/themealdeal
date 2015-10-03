@@ -21,7 +21,7 @@ require('./config/passport')(passport); //passes in passport for configuration
 // set up express application
 app.use(morgan('dev')); 
 app.use(cookieParser()); //reads cookies which are needed for authentication
-app.use(bodyParser.urlencoded()); // gets info from the html form 
+app.use(bodyParser.urlencoded({ extended: true})); // gets info from the html form 
 app.use(bodyParser.json()); 
 
 app.set('view engine', 'ejs'); //sets up ejs for templating
