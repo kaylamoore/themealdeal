@@ -5,8 +5,7 @@ function index (req, res) {
 	Deal.find(function(err, deals){
 	if(err) res.send (err)
 		// res.json(deals)
-		res.render('deals.ejs')
-
+		res.render('layout', {deals: deals});
 	})
 }
 
@@ -61,7 +60,7 @@ function destroy (req, res) {
 
 module.exports = {
 	index	: index,
-	create : create,
+	create 	: create,
 	show	: show, 
 	update	: update,
 	destroy : destroy
