@@ -98,7 +98,9 @@ var LocalStrategy		= require('passport-local').Strategy,
 		//pulls in secret from the auth.js file
 		clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL
+        callbackURL     : configAuth.facebookAuth.callbackURL,
+        enableProof     : true,
+        profileFields   : ["name", "emails"]
 
 	},
 	// facebook sends back the token and profile
@@ -110,7 +112,7 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 
 				if (err)
-					return done (err);
+					return done(err);
 
 				if (user) {
 					return done(null, user);
@@ -118,7 +120,8 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 					var newUser		= new User();
 
-					newUser.facebook.id    = profile.id; // set the users facebook id                   
+					newUser.facebook.id    = profile.id; // set the users facebook id 
+					console.log(newUser)                  
                     newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
                     newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
                     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first

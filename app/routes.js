@@ -33,7 +33,7 @@ module.exports = function(app, passport) {
 	//	FACEBOOK ROUTES
 	//	===============
 	//	route for authetication and login
-	app.get('auth/facebook', passport.authenticate('facebook', {scope : 'email' }));
+	app.get('/auth/facebook', passport.authenticate('facebook', {scope : 'email' }));
 
 	// call back after FB has authenticated
 	app.get('/auth/facebook/callback',
