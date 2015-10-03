@@ -16,7 +16,7 @@ var express 		= require('express'),
 
 mongoose.connect(configDB.url); // connects to the database
 
-// require('./config/passport')(passport); //passes in passport for configuration
+require('./config/passport')(passport); //passes in passport for configuration
 
 // set up express application
 app.use(morgan('dev')); 
@@ -32,7 +32,7 @@ app.set('view engine', 'ejs'); //sets up ejs for templating
 
 // 	ROUTES
 //	======
-// require('./app/routes.js')(app, passport); //loads the routes and passes  in passport
+require('./app/routes.js')(app, passport); //loads the routes and passes  in passport
 
 //	LAUNCH
 //	======

@@ -1,6 +1,6 @@
 //loads the packages
 var LocalStrategy		= require('passport-local').Strategy,
-	User				= require('..app/models/user');
+	User				= require('../app/models/user');
 	module.exports = function(passport) {
 
 		//passport session sign in -- needed for persistent login
@@ -18,7 +18,7 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 		//LOCAL SIGNUP
 
-		passport.user('local-signup', new LocalStrategy({
+		passport.use('local-signup', new LocalStrategy({
 			usernameField: 'email',
 			passwordField: 'password',
 			passReqToCallback: true // passes through the request back to the callback
@@ -34,7 +34,7 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 				//check to see if there is a user
 				if (user) {
-					return done(null, false, ('signupMessage', 'That email is alraedy taken'))
+					return done(null, false, ( {message: 'That email is alraedy taken'} ))
 				} else {
 					var newUser
 
@@ -51,5 +51,5 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 
 			});
-		})):
+		}));
 	};

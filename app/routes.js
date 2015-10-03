@@ -8,22 +8,27 @@ module.exports = function(app, passport) {
 
 	//	LOGIN
 	//	=====
-	app.get('login', function(req, res){
-		res.render('login.ejs', { message: ('loginMessage')};
+	app.get('/login', function(req, res){
+		res.render('login.ejs');
 	});
 
-	//app.post('/login' +++++ all the passport stuff goes here)
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect : '/profile',
+		failureRedirect : '/login'
+	}));
 
 	//	SIGN UP
 	//	=======
 
 	app.get('/signup', function(req, res) {
-		res.render('signup.ejs', { message: (signupMessage)};
+		res.render('signup.ejs');
 	});
 
 	//	process the signup form
-	//	app.post('./signup', +++++ all the passport stuff here)
-
+		app.post('./signup', passport.authenticate('local-signup', {
+			successRedirect: '/profile', 
+			failureRedirect: '/signup'
+		}));
 	//	PROFILE
 	//	=======
 
