@@ -108,6 +108,10 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 		process.nextTick(function(){
 
+			//checks to see if user already logged in
+			if (!user){
+
+
 			User.findOne({ 'facebook.id' : profile.id }, function(err, user){
 
 
@@ -115,6 +119,20 @@ var LocalStrategy		= require('passport-local').Strategy,
 					return done(err);
 
 				if (user) {
+
+				// if there is a user id but no token i.e. user was linked at one point		
+
+					if (!user.facebook.token) {
+                            user.facebook.token = token;
+                            user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                            user.facebook.email = profile.emails[0].value;
+
+                            user.save(function(err) {
+                                if (err)
+                                    throw err;
+                                return done(null, user);
+                            });
+                        }
 					return done(null, user);
 				} else {
 
@@ -137,6 +155,18 @@ var LocalStrategy		= require('passport-local').Strategy,
                 }
 
 			});
+		
+		} else {
+			//user already exits and is logged in
+			var user 			= req.user;
+
+			//updates current user facebook
+			user.facebook.id 	= profile.id;
+			user.facebook.token = token;
+			user.facebook.name 	= profile.name.givenName + ' ' + profile.name.familyName
+			user.facebook.email = profile.emails[0].value;
+		}
+
 		});
 
 	}));

@@ -1,13 +1,36 @@
 module.exports = function(app, passport) {
 
-	// 	HOME PAGE log in
+	// 	HOME PAGE 
 	//	================
 	app.get('/', function(req, res){
 		res.render('index.ejs'); //loads the index.ejs file
 	});
 
-	//	LOGIN
-	//	=====
+	//	PROFILE
+	//	=======
+
+	app.get('/profile', isLoggedIn, function(req, res){
+		res.render('profile.ejs', {
+			user : req.user // will get the user out of the session
+		})
+	})
+
+	
+	//	LOGOUT
+	//	======
+	app.get('/logout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	})
+
+	// 	AUTHENTICATE FIRST LOGIN
+	//	========================
+	
+	// 	local --------
+
+		//	LOGIN
+		//	=====
+
 	app.get('/login', function(req, res){
 		res.render('login.ejs');
 	});
@@ -17,8 +40,8 @@ module.exports = function(app, passport) {
 		failureRedirect : '/login'
 	}));
 
-	//	SIGN UP
-	//	=======
+		//	SIGN UP
+		//	=======
 
 	app.get('/signup', function(req, res) {
 		res.render('signup.ejs');
@@ -30,8 +53,9 @@ module.exports = function(app, passport) {
 		failureRedirect: '/signup'
 		}));
 
-	//	FACEBOOK ROUTES
-	//	===============
+	
+	//	facebook -------
+
 	//	route for authetication and login
 	app.get('/auth/facebook', passport.authenticate('facebook', {scope : 'email' }));
 
@@ -42,21 +66,56 @@ module.exports = function(app, passport) {
 			failureRedirect : '/'
 		}));
 
-	//	PROFILE
-	//	=======
+	//	AUTHORIZE SOMEONE WHO IS ALREADY LOGGED IN AND CONNECT ACCOUNTS
+	//	========================
 
-	app.get('/profile', isLoggedIn, function(req, res){
-		res.render('profile.ejs', {
-			user : req.user // will get the user out of the session
-		})
-	})
+		//	locally -----
 
-	//	LOGOUT
-	//	======
-	app.get('/logout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	})
+		app.get('/connect/local', function(req, res){
+			res.render('connect-local.ejs', {message: req.flash('loginMessage')}) ;
+		});
+		app.post('/connect/local', passport.authenticate('local-signup', {
+			successRedirect : '/profile', // redirect to the secure profile section
+			failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
+			failureFlash : true // allow flash messages
+		}));
+
+		// facebook -----
+
+		//sends to facebook for auth
+		app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email'}));
+
+		//handle the call back after fb has authorized
+		app.get('connect/facebook/callback',
+			passport.authorize('facebook', {
+				successRedirect : '/profile',
+				failureRedirect : '/'
+			}));
+
+
+	// 	UNLINKING ACCOUNTS
+	//	==================
+	
+		//	local -----
+
+	app.get('/unlink/local', function(req, res) {
+        var user            = req.user;
+        user.local.email    = undefined;
+        user.local.password = undefined;
+        user.save(function(err) {
+            res.redirect('/profile');
+        });
+    });
+
+    //facebook
+
+    app.get('/unlink/facebook', function(req, res) {
+        var user            = req.user;
+        user.facebook.token = undefined;
+        user.save(function(err) {
+            res.redirect('/profile');
+        });
+    });
 
 };
 
