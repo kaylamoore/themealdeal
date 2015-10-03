@@ -27,7 +27,12 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs'); //sets up ejs for templating
 
 // passport requirements
-app.use(session({ secret: 'supersupersecret' }));
+app.use(session({ 
+	secret: 'supersupersecret', 
+	resave: true,
+	saveUninitialized: true
+}));
+
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 
