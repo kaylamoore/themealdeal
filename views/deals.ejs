@@ -4,18 +4,16 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
 </head>
 <body>
+	<% include ./partials/nav.ejs %>
 <div class="container">
 
     <div class="page-header text-user">
         <h1><span class="fa fa-pencil"></span> The Best Deals in Town</h1>
     </div>
 
-   
+
 
         <div class="col-sm-6">
             <div class="well">
@@ -26,18 +24,18 @@
                         <ul>
                           <li><b>Name : </b> <%= deals[i].title %></li>
                           <li><b>Price : </b> $<%= deals[i].price %></li>
-                          
+
                         </ul>
 
                     <% } %>
 
-                    
-                
+
+
 
             </div>
         </div>
 
-    
+
 
 
 
@@ -52,9 +50,9 @@
                     </div>
                     <div class="form-group">
                         <label>Price</label>
-                        <input type="password" class="form-control" name="price">
+                        <input type="text" class="form-control" name="price">
                     </div>
-                    
+
                     <button type="submit" class="btn btn-warning btn-lg">Submit</button>
                 </form>
         </div>
