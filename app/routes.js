@@ -1,8 +1,15 @@
 module.exports = function(app, passport) {
 
-	// 	HOME PAGE 
-	//	================
+
+	// LAYOUT PAGE
+	// =================
 	app.get('/', function(req, res){
+		res.render('layout.ejs'); //loads the index.ejs file
+	});
+
+	// 	HOME PAGE
+	//	================
+	app.get('/home', function(req, res){
 		res.render('index.ejs'); //loads the index.ejs file
 	});
 
@@ -15,7 +22,16 @@ module.exports = function(app, passport) {
 		})
 	})
 
-	
+
+	//	TWEETS
+	//	=======
+
+	app.get('/tweets', function(req, res){
+		res.render('tweets.ejs', {
+		})
+	})
+
+
 	//	LOGOUT
 	//	======
 	app.get('/logout', function(req, res) {
@@ -25,7 +41,7 @@ module.exports = function(app, passport) {
 
 	// 	AUTHENTICATE FIRST LOGIN
 	//	========================
-	
+
 	// 	local --------
 
 		//	LOGIN
@@ -49,11 +65,11 @@ module.exports = function(app, passport) {
 
 	//	process the signup form
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect: '/profile', 
+		successRedirect: '/profile',
 		failureRedirect: '/signup'
 		}));
 
-	
+
 	//	facebook -------
 
 	//	route for authetication and login
@@ -95,7 +111,7 @@ module.exports = function(app, passport) {
 
 	// 	UNLINKING ACCOUNTS
 	//	==================
-	
+
 		//	local -----
 
 	app.get('/unlink/local', function(req, res) {
