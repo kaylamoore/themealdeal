@@ -5,7 +5,7 @@ function index (req, res) {
 	Deal.find(function(err, deals){
 	if(err) res.send (err)
 		// res.json(deals)
-		res.render('layout', {deals: deals});
+		res.render('deals', {deals: deals});
 	})
 }
 
@@ -19,7 +19,8 @@ function create (req, res) {
 
 	deal.save(function(err){
 		if (err) res.send(err)			 
-		res.json({success: true, message: "Deal created"})
+		//res.json({success: true, message: "Deal created"})
+		res.redirect('/deals');
 
 	})
 }

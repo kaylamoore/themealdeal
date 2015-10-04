@@ -5,7 +5,7 @@ var mongoose 	= require('mongoose'),
 
 	DealSchema = new Schema({
 		title:  {type: String, required: true}, 
-		price:  {type: Number, required: true, Number},
+		price:  {type: Number, required: true},
 		// date:  	{type: Date, required: true},
 		// vendor: [vendorSchema],
 		created_at: Date
