@@ -10,7 +10,7 @@
 <div class="container">
 
     <div class="page-header text-user">
-        <h1><span class="fa fa-pencil"></span> The Best Deals in Town</h1>
+        <h1><span class="fa fa-cutlery"></span> The Best Deals in Town</h1>
     </div>
         <div class="col-sm-6">
             <div class="well">
@@ -21,8 +21,7 @@
                         <ul>
                           <li><b>Name : </b> <%= deals[i].title %></li>
                           <li><b>Price : </b> $<%= deals[i].price %></li>
-                          <li><b>ID : </b> <%= deals[i].id %></li>
-                          <li><%- link_to('show', 'deals/'+deals[i].id) %></li>
+                          <li><%- link_to('show', 'deals/'+deals[i].id) %></li>              
                         </ul>
                     <% } %>
             </div>
