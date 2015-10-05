@@ -4,10 +4,22 @@ var express = require('express'),
 	Deal = require('../models/deal'),
 	dealRouter = express.Router(),
 	methodOverride = require('method-override'),
+	passport = require('passport'),
 	bodyParser = require('body-parser');
 
+ function authenticatedUser( req, res, next ) {
+    // If the user is authenticated, then we continue the execution
+    if ( req.isAuthenticated() ) {
+        return next();
+    }
+
+    // Otherwise the request is always redirected to the home page
+    res.redirect( '/' );
+  }
+
+
 dealRouter.route('/') // displays and adds to all deals
-	.get(dealsController.index)
+	.get(authenticatedUser, dealsController.index)
 	.post(dealsController.create)
 
 dealRouter.route('/:deal_id')

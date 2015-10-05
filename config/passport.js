@@ -4,6 +4,7 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 	//loads the User model
 	User				= require('../app/models/user'),
+	Vendor 				= require('../app/models/vendor'),
 
 	configAuth			= require('./auth');
 	
@@ -124,8 +125,9 @@ module.exports = function(passport) {
                             user.facebook.email = profile.emails[0].value;
 
                             user.save(function(err) {
-                                if (err)
+                                if (err) {
                                     throw err;
+                                }
                                 return done(null, user);
                             });
                         }
@@ -141,8 +143,9 @@ module.exports = function(passport) {
                         newUser.facebook.email = profile.emails[0].value;
 
                         newUser.save(function(err) {
-                            if (err)
+                            if (err) {
                                 throw err;
+                            }
                             return done(null, newUser);
                         });
                     }
@@ -158,8 +161,9 @@ module.exports = function(passport) {
                 user.facebook.email = profile.emails[0].value;
 
                 user.save(function(err) {
-                    if (err)
+                    if (err) {
                         throw err;
+                    }
                     return done(null, user);
                 });
 
@@ -191,7 +195,7 @@ module.exports = function(passport) {
 
 				//check to see if there is a vendor
 				if (vendor) {
-					return done(null, false, ( {message: 'That email is alraedy taken'} ))
+					return done(null, false, ( {message: 'That email is already taken'} ))
 				} else {
 				
 					var newVendor				= new Vendor();

@@ -16,14 +16,17 @@
             <div class="well">
                 <h3><span class="fa fa-table"></span> The Meal Deals</h3>
 
-                <%# if (user.local.email) { %>
+                
                     <% for(var i=0; i< deals.length; i++) {  %>
                         <ul>
                           <li><b>Name : </b> <%= deals[i].title %></li>
                           <li><b>Price : </b> $<%= deals[i].price %></li>
-                          <li><%- link_to('show', 'deals/'+deals[i].id) %></li>              
+                          <% if (global.user) { %>
+                          <li><%- link_to('show', 'deals/'+deals[i].id) %></li>  
+                          <% } %>             
                         </ul>
                     <% } %>
+               
             </div>
         </div>
 
