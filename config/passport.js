@@ -94,34 +94,31 @@ module.exports = function(passport) {
 	//	========
 
 	passport.use(new FacebookStrategy({
-		//pulls in secret from the auth.js file
-		clientID        : configAuth.facebookAuth.clientID,
+
+        clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
+        passReqToCallback : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         enableProof     : true,
         profileFields   : ["name", "emails"]
 
-	},
-	// facebook sends back the token and profile
-	function(req, token, refreshToken, profile, done) {
+    },
+    function(req, token, refreshToken, profile, done) {
 
-		process.nextTick(function(){
+        // asynchronous
+        process.nextTick(function() {
 
-			//checks to see if user already logged in
-			if (!req.user){
+            // check if the user is already logged in
+            if (!req.user) {
 
+                User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+                    if (err)
+                        return done(err);
 
-			User.findOne({ 'facebook.id' : profile.id }, function(err, user){
+                    if (user) {
 
-
-				if (err)
-					return done(err);
-
-				if (user) {
-
-				// if there is a user id but no token i.e. user was linked at one point		
-
-					if (!user.facebook.token) {
+                        // if there is a user id already but no token (user was linked at one point and then removed)
+                        if (!user.facebook.token) {
                             user.facebook.token = token;
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                             user.facebook.email = profile.emails[0].value;
@@ -132,64 +129,45 @@ module.exports = function(passport) {
                                 return done(null, user);
                             });
                         }
-					return done(null, user);
-				} else {
 
-					var newUser		= new User();
+                        return done(null, user); // user found, return that user
+                    } else {
+                        // if there is no user, create them
+                        var newUser            = new User();
 
-					newUser.facebook.id    = profile.id; // set the users facebook id 
-					console.log(newUser)                  
-                    newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                    newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                        newUser.facebook.id    = profile.id;
+                        newUser.facebook.token = token;
+                        newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                        newUser.facebook.email = profile.emails[0].value;
 
-                    // save our user to the database
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+                    }
+                });
 
-                        // if successful, return the new user
-                        return done(null, newUser);
-                    });
-                }
+            } else {
+                // user already exists and is logged in, we have to link accounts
+                var user            = req.user; // pull the user out of the session
 
-			});
-		
-		} else {
-			//user already exits and is logged in
-			var user 			= req.user;
+                user.facebook.id    = profile.id;
+                user.facebook.token = token;
+                user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
+                user.facebook.email = profile.emails[0].value;
 
-			//updates current user facebook
-			user.facebook.id 	= profile.id;
-			user.facebook.token = token;
-			user.facebook.name 	= profile.name.givenName + ' ' + profile.name.familyName
-			user.facebook.email = profile.emails[0].value;
-			
-			//save the user
-			user.save(function(err){
-				if (err)
-					throw err;
-				return done(null, user)
-			}); 
+                user.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
 
-		}
+            }
+        });
 
-		});
+    }));
 
-	}));
-
-//passport session sign in -- needed for persistent login
-
-		passport.serializeUser(function(user, done){
-			done(null, user.id);
-		});
-
-		// used to deserailize the user
-		passport.deserializeUser(function(id, done){
-			User.findById(id, function(err, user){
-				done(err, user);
-			});
-		});
 
 		
 		//VENDOR SIGNUP
