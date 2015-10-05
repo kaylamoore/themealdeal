@@ -1,4 +1,4 @@
-var Deal = require('../models/deal.js');
+var Deal 	= require('../models/deal.js')
 
 function index (req, res) {
 //gets all deals
@@ -18,7 +18,7 @@ function create (req, res) {
 	// deal.date	= req.body.data
 
 	deal.save(function(err){
-		if (err) res.send(err)			 
+		if (err) res.send(err)
 		//res.json({success: true, message: "Deal created"})
 		res.redirect('/deals');
 
@@ -62,7 +62,7 @@ function destroy (req, res) {
 module.exports = {
 	index	: index,
 	create 	: create,
-	show	: show, 
+	show	: show,
 	update	: update,
 	destroy : destroy
 }
