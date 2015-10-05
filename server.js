@@ -2,6 +2,7 @@
 
 var express 		= require('express'),
 	app				= express(),
+	expressHelper	= require('express-helpers')
 	port 			= process.env.PORT || 8080,
 	mongoose		= require('mongoose'),
 	passport		= require('passport'),
@@ -22,7 +23,7 @@ var express 		= require('express'),
 mongoose.connect(configDB.url); // connects to the database
 
 require('./config/passport')(passport); //passes in passport for configuration
-
+require('express-helpers')(app);
 // set up express application
 app.use(morgan('dev')); 
 app.use(cookieParser()); //reads cookies which are needed for authentication
