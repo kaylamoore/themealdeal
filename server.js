@@ -14,7 +14,8 @@ var express 		= require( "express" ),
 	flash			= require('connect-flash'),
 	dealRouter 		= require('./app/routes/dealRoutes'),
 	vendorRouter	= require('./app/routes/vendorRoutes'),
-	userRouter		= require('./app/routes/userRoutes');
+	userRouter		= require('./app/routes/userRoutes'),
+	helpers			= require('express-helpers')
 
 
 
