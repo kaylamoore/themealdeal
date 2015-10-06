@@ -66,12 +66,12 @@ vendorRouter.post('/login', function(req, res){
 
 // })
 
-vendorRouter.route('/vendors')
+vendorRouter.route('/')
 	.get(vendorsController.index)
 	.post(vendorsController.create)
 	
 
-vendorRouter.route('/vendors/:vendor_id')
+vendorRouter.route('/:vendor_id')
 	.get(vendorsController.show)
 	.put(vendorsController.update)
 	.delete(vendorsController.destroy)

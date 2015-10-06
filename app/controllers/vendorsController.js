@@ -30,7 +30,7 @@ function create (req, res){
 
 function show (req, res){
 		//gets a single vendor
-		vendor.findById(req.params.vendor_id, function(err, vendor){
+		Vendor.findById(req.params.vendor_id, function(err, vendor){
 			if(err) res.send(err)
 			res.json(vendor)
 		})
