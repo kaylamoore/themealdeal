@@ -10,7 +10,7 @@ $(function (){
     $('#tweet-container').prepend(html);
   });
 
-  $('form').on('submit', function(){
+  $('#tweetBtn').on('click', function(){
     event.preventDefault();
     var search_term = $('input').val();
     socket.emit('updateTerm', search_term);
