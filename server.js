@@ -35,11 +35,11 @@ require( 'express-helpers' )( app );
 // set up express application
 app.use( morgan( "dev" ) )
 app.use( cookieParser() ) //reads cookies which are needed for authentication
-app.use( bodyParser.urlencoded( { extended: true} ) ) // gets info from the html form
+app.use( bodyParser.urlencoded( { extended: true}) ) // gets info from the html form
 app.use( bodyParser.json() )
 app.use( flash() )
 helpers( app )
-app.use( express.static( path.join( __dirname, 'public' )))
+app.use( express.static( path.join( __dirname, 'public' ) ) )
 
 app.set( "view engine", "ejs" ) //sets up ejs for templating
 app.engine( "ejs", require( "ejs" ).renderFile )
@@ -49,7 +49,7 @@ app.use( session( {
 	secret: "supersupersecret",
 	resave: true,
 	saveUninitialized: true
-} ) )
+}) )
 
 app.use( passport.initialize() );
 app.use( passport.session() ); //persistent login session
@@ -57,7 +57,7 @@ app.use( function ( req, res, next ){
 	console.log( req.user )
 	global.user = req.user;
 	next()
-} );
+});
 // 	ROUTES
 //	======
 require( './app/routes/userRoutes.js' )( app, passport ); //loads the routes and passes  in passport
@@ -72,7 +72,7 @@ app.use( '/vendors', vendorRouter )
 
 // TWITTER FEED
 
-var twitter = new Twit({
+var twitter = new Twit( {
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   access_token: process.env.TWITTER_ACCESS_TOKEN,
@@ -82,24 +82,24 @@ var twitter = new Twit({
 var stream;
 var searchTerm;
 
-io.on('connect', function(socket) {
-  socket.on('updateTerm', function (searchTerm) {
-    socket.emit('updatedTerm', searchTerm);
+io.on( 'connect', function( socket ) {
+  socket.on( 'updateTerm', function ( searchTerm ) {
+    socket.emit( 'updatedTerm', searchTerm );
 
     // Start stream
-    if (stream) {
+    if ( stream ) {
       stream.stop();
     }
 
-    stream = twitter.stream('statuses/filter', { track: searchTerm, language: 'en' });
+    stream = twitter.stream( 'statuses/filter', { track: searchTerm, language: 'en' });
 
-    stream.on('tweet', function (tweet) {
+    stream.on( 'tweet', function ( tweet ) {
       var data = {};
       data.name = tweet.user.name;
       data.screen_name = tweet.user.screen_name;
       data.text = tweet.text;
       data.user_profile_image = tweet.user.profile_image_url;
-      socket.emit('tweets', data);
+      socket.emit( 'tweets', data );
     });
   });
 });
