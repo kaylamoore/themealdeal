@@ -16,6 +16,9 @@ vendorRouter.route( '/:vendor_id' )
 	.put( vendorsController.update )
 	.delete( vendorsController.destroy )
 
+	
+module.exports = vendorRouter
+
 
 // vendorRouter.post( '/login', function( req, res ) {
 // 	//find the vendor in DB
@@ -73,4 +76,3 @@ vendorRouter.route( '/:vendor_id' )
 // })
 
 
-module.exports = vendorRouter
