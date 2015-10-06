@@ -1,17 +1,17 @@
 var Vendor = require( '../models/vendor.js' )
 
 function index ( req, res ) {
-		//gets all the users
-		Vendor.find( function( err, users ) {
+		//gets all the vendors
+		Vendor.find( function( err, vendors ) {
 			if( err ) res.send ( err )
-			res.json( users )
+			res.render( 'vendor_signup', {vendors: vendors});
 		})
 	}
 
 function create ( req, res ) {
-		//makes single user
+		//makes single vendor
 		var vendor = new Vendor()
-		vendor.name = req.body.name
+	
 		vendor.email = req.body.email
 		vendor.password = req.body.password
 
@@ -23,7 +23,7 @@ function create ( req, res ) {
 					res.send( err )
 				}
 			}
-			res.json( {success: true, message: "vendor created!"})
+			res.redirect('/deals')
 	})
 
 }

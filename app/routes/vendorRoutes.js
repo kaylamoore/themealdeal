@@ -5,10 +5,15 @@ var express 			= require( 'express' ),
 	mySpecialSecret 	= "secret",
 	vendorRouter 		= express.Router(); // get an instance of express router
 
-
 vendorRouter.route( '/' )
 	.get( vendorsController.index )
 	.post( vendorsController.create )
+
+
+vendorRouter.route( '/:vendor_id' )
+	.get( vendorsController.show )
+	.put( vendorsController.update )
+	.delete( vendorsController.destroy )
 
 
 vendorRouter.post( '/login', function( req, res ) {
@@ -66,14 +71,5 @@ vendorRouter.post( '/login', function( req, res ) {
 
 // })
 
-vendorRouter.route( '/' )
-	.get( vendorsController.index )
-	.post( vendorsController.create )
-
-
-vendorRouter.route( '/:vendor_id' )
-	.get( vendorsController.show )
-	.put( vendorsController.update )
-	.delete( vendorsController.destroy )
 
 module.exports = vendorRouter
