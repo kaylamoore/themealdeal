@@ -12,10 +12,13 @@ function index ( req, res ) {
 
 function create ( req, res ) {
 	//makes a single deal
+
+	console.log( vendor )
 	var deal 	= new Deal()
 
 	deal.title	= req.body.title
 	deal.price	= req.body.price
+	// deal.vendorid = vendor
 	// deal.date	= req.body.data
 
 	deal.save( function( err ) {

@@ -4,27 +4,31 @@ function index ( req, res ) {
 		//gets all the vendors
 		Vendor.find( function( err, vendors ) {
 			if( err ) res.send ( err )
-			res.render( 'vendor_signup', {vendors: vendors});
+			res.json (vendors)
+			// res.render( 'vendor_signup', {vendors: vendors} );
 		})
 	}
 
 function create ( req, res ) {
 		//makes single vendor
+		console.log(req.body)
+
 		var vendor = new Vendor()
 	
 		vendor.email = req.body.email
 		vendor.password = req.body.password
 
+		console.log(vendor)
+
+
 		vendor.save( function( err ) {
 			if( err ) {
-				if( err.code == 11000 ) {
-					res.json( {success: false, message: "email already exists"})
-				} else {
+				
 					res.send( err )
 				}
-			}
+			
 			res.redirect('/deals')
-	})
+		})
 
 }
 
