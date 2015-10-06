@@ -1,10 +1,12 @@
-var Vendor = require( '../models/vendor.js' )
+var User = require( '../models/user.js' )
 
 function index ( req, res ) {
 		//gets all the vendors
-		Vendor.find( function( err, vendors ) {
-			if( err ) res.send ( err )
-			res.json (vendors)
+		User.find( function( err, vendors ) {
+			if( err ) res.send ( err ) 
+			
+				User.isvendor = true
+				res.json (vendors)
 			// res.render( 'vendor_signup', {vendors: vendors} );
 		})
 	}
