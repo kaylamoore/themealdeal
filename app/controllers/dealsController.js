@@ -6,6 +6,7 @@ function index (req, res) {
 	if(err) res.send (err)
 		// res.json(deals)
 		res.render('deals', {deals: deals});
+
 	})
 }
 
