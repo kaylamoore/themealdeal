@@ -8,7 +8,7 @@ var LocalStrategy		= require('passport-local').Strategy,
 
 	configAuth			= require('./auth');
 	
-module.exports = function(passport) {
+module.exports = function(passport){
 
 		//passport session sign in -- needed for persistent login
 
@@ -177,8 +177,8 @@ module.exports = function(passport) {
 		//VENDOR SIGNUP
 
 		passport.use('vendor-signup', new LocalStrategy({
-			usernameField: 'email',
-			passwordField: 'password',
+			usernameField: 'vendoremail',
+			passwordField: 'vendorpassword',
 			passReqToCallback: true // passes through the request back to the callback
 
 
@@ -245,4 +245,6 @@ module.exports = function(passport) {
 
     }));
 };
+
+
 		

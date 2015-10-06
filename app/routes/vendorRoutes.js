@@ -8,8 +8,12 @@ module.exports = function(app, passport) {
 	});
 
 		// process the signup form
-	app.post('vendors/signup', passport.authenticate('vendor-signup', {
-		successRedirect: '/vendors/profile',
-		failureRedirect: '/vendors/signup'
+	app.post('/vendors/signup', passport.authenticate('vendor-signup', {
+		successRedirect : '/',
+		failureRedirect : '/vendors/signup'
 		}));
 };
+
+
+
+

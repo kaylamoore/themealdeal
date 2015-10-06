@@ -5,8 +5,8 @@ var mongoose	= require('mongoose'),
 	var vendorSchema = mongoose.Schema({
 
 		local		: {
-			email	: String,
-			password: String,
+			vendoremail	: {type: String, unique: false},
+			vendorpassword: String
 		},
 		
 	});
