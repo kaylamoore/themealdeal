@@ -8,9 +8,13 @@
 		<link rel="stylesheet" href="../css/style.css" media="screen" title="no title" charset="utf-8"> <!-- load fontawesome -->
 	</head>
 	<body>
-		<% include ./partials/nav.ejs%>
-		<% include ./partials/home.ejs%>
+		<%- include ./partials/nav.ejs%>
+		<%- include ./partials/home.ejs%>
 
+
+		<div class="container">
+			<%- body %>
+		</div>
 
 	</body>
 </html>
