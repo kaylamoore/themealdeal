@@ -3,6 +3,14 @@
 <script>
 
 
+  var myjson;
+  $.getJSON("/vendors/", function(json) {
+    console.log("json")
+    console.log()
+    myjson = json;
+  });
+
+
 function addMarker( position, map ){
   console.log( position.latlng )
   //dont add for loop in here 
@@ -29,31 +37,45 @@ function initMap() {
   });
   var infoWindow = new google.maps.InfoWindow({map: map});
 
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(function(position) {
-       var pos = {
-         lat: position.coords.latitude,
-         lng: position.coords.longitude
-       };
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(function(position) {
+           var pos = {
+             lat: position.coords.latitude,
+             lng: position.coords.longitude
+           };
 
-       infoWindow.setPosition(pos);
-       infoWindow.setContent('Location found.');
-       map.setCenter(pos);
-     }, function() {
-       handleLocationError(true, infoWindow, map.getCenter());
-     });
-  } else {
-     // Browser doesn't support Geolocation
-     handleLocationError(false, infoWindow, map.getCenter());
-  } 
-  //On event of "restaurants:loaded"
-  // loop through restaurants and add marker for each: addMarker( `position`, mapToPopulate )
-  google.maps.event.addListener(map, "click", function( position ) {
-    console.log( position )
-    addMarker( position, map )
-  })
-}
+           infoWindow.setPosition(pos);
+           infoWindow.setContent('Location found.');
+           map.setCenter(pos);
+         }, function() {
+           handleLocationError(true, infoWindow, map.getCenter());
+         });
+      } else {
+         // Browser doesn't support Geolocation
+         handleLocationError(false, infoWindow, map.getCenter());
+      } 
+      //On event of "restaurants:loaded"
+      // loop through restaurants and add marker for each: addMarker( `position`, mapToPopulate )
+      var vendorMarkers = [];
+      for (var i=0; i < (myjson.length); i++) {
+        var vendorInfo = myjson[i];
+        var vendorPosition = new google.mapsLatLng(vendorInfo.latitude, vendorInfo.longitude);
+        var vendorMarker = new google.maps.Marker({
+          position: vendorPosition,
+          map: map,
+          icon: large_green
+        });
+        //vendorMarkers.push(vendorMarker);
+        //getVendorInfo( vendorInfo, vendorMarker);
+        vendorMarker.setMap( map )
+      }
+
+      google.maps.event.addListener(map, "click", function( position ) {
+        console.log( position )
+        addMarker( position, map )
+      })
+    }
 
 
 
