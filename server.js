@@ -53,11 +53,11 @@ app.use(function (req, res, next){
 // 	ROUTES
 //	======
 require('./app/routes/userRoutes.js')(app, passport); //loads the routes and passes  in passport
-require('./app/routes/vendorRoutes.js')(app, passport);
+require('./app/routes/vendorRoutes.js');
 // app.use('/users', userRouter) when you get a request starting with users use the userRouter
 
 app.use('/deals', dealRouter); //when you get a request starting with deal use dealRouter
-
+app.use('/vendors', vendorRouter)
 //	LAUNCH
 //	======
 app.listen(port)
