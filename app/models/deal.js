@@ -1,10 +1,10 @@
-var mongoose 	= require('mongoose'),
+var mongoose 	= require( 'mongoose' ),
 	Schema		= mongoose.Schema,
 
 // makes the deal schema
 
-	DealSchema = new Schema({
-		title:  {type: String, required: true}, 
+	DealSchema = new Schema( {
+		title:  {type: String, required: true},
 		price:  {type: Number, required: true},
 		// date:  	{type: Date, required: true},
 		// vendor: [vendorSchema],
@@ -12,10 +12,10 @@ var mongoose 	= require('mongoose'),
 	})
 
 
-// saves the created at date before creation 
-DealSchema.pre('save', function (next) {
+// saves the created at date before creation
+DealSchema.pre( 'save', function ( next ) {
 	this.created_at = new Date();
 	next();
 });
 
-module.exports = mongoose.model('Deal', DealSchema)
+module.exports = mongoose.model( 'Deal', DealSchema )
