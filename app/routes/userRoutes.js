@@ -4,30 +4,21 @@ module.exports = function( app, passport ) {
 	// LAYOUT PAGE
 	// =================
 	app.get( '/', function( req, res ) {
-		res.render( 'layout.ejs' ); //loads the index.ejs file
-	});
-
-	// 	HOME PAGE
-	//	================
-	app.get( '/home', function( req, res ) {
-		res.render( 'index.ejs' ); //loads the index.ejs file
+		res.render( "index" ); //loads the index.ejs file
 	});
 
 	//	PROFILE
 	//	=======
-
 	app.get( '/profile', isLoggedIn, function( req, res ) {
-		res.render( 'profile.ejs', {
+		res.render( 'profile', {
 			user : req.user // will get the user out of the session
 		})
 	})
 
-
 	//	TWEETS
 	//	=======
-
 	app.get( '/tweets', function( req, res ) {
-		res.render( 'tweets.ejs', {
+		res.render( 'tweets', {
 		})
 	})
 
@@ -44,11 +35,10 @@ module.exports = function( app, passport ) {
 
 	// 	local --------
 
-		//	LOGIN
-		//	=====
-
+	//	LOGIN
+	//	=====
 	app.get( '/login', function( req, res ) {
-		res.render( 'login.ejs' );
+		res.render( 'login' );
 	});
 
 	app.post( '/login', passport.authenticate( 'local-login', {
@@ -56,11 +46,10 @@ module.exports = function( app, passport ) {
 		failureRedirect : '/login'
 	}) );
 
-		//	SIGN UP
-		//	=======
-
+	//	SIGN UP
+	//	=======
 	app.get( '/signup', function( req, res ) {
-		res.render( 'signup.ejs' );
+		res.render( 'signup' );
 	});
 
 	//	process the signup form
@@ -71,7 +60,6 @@ module.exports = function( app, passport ) {
 
 
 	//	facebook -------
-
 	//	route for authetication and login
 	app.get( '/auth/facebook', passport.authenticate( 'facebook', {scope : 'email' }) );
 
@@ -86,7 +74,6 @@ module.exports = function( app, passport ) {
 	//	========================
 
 		//	locally -----
-
 		app.get( '/connect/local', function( req, res ) {
 			res.render( 'connect-local.ejs', {message: req.flash( 'loginMessage' )}) ;
 		});
@@ -112,8 +99,7 @@ module.exports = function( app, passport ) {
 	// 	UNLINKING ACCOUNTS
 	//	==================
 
-		//	local -----
-
+	//	local -----
 	app.get( '/unlink/local', function( req, res ) {
         var user            = req.user;
         user.local.email    = undefined;
@@ -124,7 +110,6 @@ module.exports = function( app, passport ) {
     });
 
     //facebook
-
     app.get( '/unlink/facebook', function( req, res ) {
         var user            = req.user;
         user.facebook.token = undefined;

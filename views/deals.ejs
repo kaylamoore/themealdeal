@@ -1,14 +1,3 @@
-<!doctype html>
-<html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-</head>
-<body>
-	<% include ./partials/nav.ejs %>
-<div class="container">
-
     <div class="page-header text-user">
         <h1><span class="fa fa-cutlery"></span> The Best Deals in Town</h1>
     </div>
@@ -16,17 +5,17 @@
             <div class="well">
                 <h3><span class="fa fa-table"></span> The Meal Deals</h3>
 
-                
+
                     <% for(var i=0; i< deals.length; i++) {  %>
                         <ul>
                           <li><b>Name : </b> <%= deals[i].title %></li>
                           <li><b>Price : </b> $<%= deals[i].price %></li>
                           <% if (global.user) { %>
-                          <li><%- link_to('show', 'deals/'+deals[i].id) %></li>  
-                          <% } %>             
+                          <li><%- link_to('show', 'deals/'+deals[i].id) %></li>
+                          <% } %>
                         </ul>
                     <% } %>
-               
+
             </div>
         </div>
 
@@ -47,8 +36,3 @@
                 </form>
         </div>
     </div>
-</div>
-
-
-</body>
-</html>

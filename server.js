@@ -4,7 +4,7 @@ var express 		= require( "express" ),
 	app				= express(),
 	http			= require( 'http' ).Server( app ),
 	io				= require( 'socket.io' )( http ),
-	expressLayouts  = require( "express-ejs-layouts" ),
+	expressLayouts  = require( 'express-ejs-layouts' ),
 	port 			= process.env.PORT || 8080,
 	mongoose		= require( 'mongoose' ),
 	passport		= require( 'passport' ),
@@ -39,10 +39,13 @@ app.use( bodyParser.urlencoded( { extended: true}) ) // gets info from the html 
 app.use( bodyParser.json() )
 app.use( flash() )
 helpers( app )
-app.use( express.static( path.join( __dirname, 'public' ) ) )
 
 app.set( "view engine", "ejs" ) //sets up ejs for templating
+app.use( expressLayouts )
+app.use( express.static( path.join( __dirname, 'public' ) ) )
 app.engine( "ejs", require( "ejs" ).renderFile )
+app.set('views', path.join(__dirname, 'views'));
+
 
 // passport requirements
 app.use( session( {
@@ -54,16 +57,15 @@ app.use( session( {
 app.use( passport.initialize() );
 app.use( passport.session() ); //persistent login session
 app.use( function ( req, res, next ){
-	console.log( req.user )
+	console.log( "User: ", req.user )
 	global.user = req.user;
 	next()
 });
 // 	ROUTES
 //	======
-require( './app/routes/userRoutes.js' )( app, passport ); //loads the routes and passes  in passport
-require( './app/routes/vendorRoutes.js' );
-// app.use( '/users', userRouter ) when you get a request starting with users use the userRouter
 
+userRouter( app, passport ); //loads the routes and passes  in passport
+// app.use( '/users', userRouter ) when you get a request starting with users use the userRouter
 app.use( '/deals', dealRouter ); //when you get a request starting with deal use dealRouter
 app.use( '/vendors', vendorRouter )
 
@@ -82,7 +84,8 @@ var twitter = new Twit( {
 var stream;
 var searchTerm;
 
-io.on( 'connect', function( socket ) {
+io.on( 'connection', function( socket ) {
+	console.log( "Connection Made" );
   socket.on( 'updateTerm', function ( searchTerm ) {
     socket.emit( 'updatedTerm', searchTerm );
 
@@ -112,5 +115,6 @@ io.on( 'connect', function( socket ) {
 
 //	LAUNCH
 //	======
-app.listen( port )
+//app.listen( port )
+http.listen( port )
 console.log( "The magic is happening on port " + port )
