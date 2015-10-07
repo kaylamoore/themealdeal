@@ -1,5 +1,5 @@
 var mongoose 	= require( 'mongoose' ),
-	userSchema	= require ('./user.js')
+	userSchema	= require ( './user.js' )
 	Schema		= mongoose.Schema,
 
 // makes the deal schema
