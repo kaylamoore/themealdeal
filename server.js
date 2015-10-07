@@ -58,6 +58,7 @@ app.use( passport.initialize() );
 app.use( passport.session() ); //persistent login session
 app.use( function ( req, res, next ){
 	console.log( "User: ", req.user )
+	console.log( "Vendor ", req.vendor )
 	global.user = req.user;
 	next()
 });

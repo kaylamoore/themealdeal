@@ -1,6 +1,5 @@
 module.exports = function( app, passport ) {
 
-
 	// LAYOUT PAGE
 	// =================
 	app.get( '/', function( req, res ) {

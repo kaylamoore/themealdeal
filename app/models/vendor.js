@@ -5,7 +5,7 @@ var mongoose = require( 'mongoose' ),
 var vendorSchema = new Schema( {
 	
 	email: String, 
-	password: String, 
+	password: String 
 
 })
 
@@ -30,4 +30,4 @@ vendorSchema.methods.comparePassword = function( password ){
 	return bcrypt.compareSync( password, vendor.password )
 }
 
-module.exports = mongoose.model( 'vendor', vendorSchema )
+module.exports = mongoose.model( 'Vendor', vendorSchema )

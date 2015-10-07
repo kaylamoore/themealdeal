@@ -2,7 +2,9 @@ var express 			= require( 'express' ),
 	vendorsController 	= require( '../controllers/vendorsController' ),
 	jwt 				= require( 'jsonwebtoken' ),
 	Vendor 				= require( '../models/vendor' ),
+	User 				= require( '../models/user'),
 	mySpecialSecret 	= "secret",
+	bodyParser 			= require( 'body-parser' );
 	vendorRouter 		= express.Router(); // get an instance of express router
 
 vendorRouter.route( '/' )
@@ -16,33 +18,36 @@ vendorRouter.route( '/:vendor_id' )
 	.delete( vendorsController.destroy )
 
 
-vendorRouter.post( '/login', function( req, res ) {
-	//find the vendor in DB
-	Vendor.findOne( {
-		email: req.body.email
-	}).select( 'name email password' ).exec( function( err, vendor ) {
-		if( err ) throw err
-		if( !vendor ) {
-			res.json( {success: false, message: "auth failed, vendor not found"})
-		} else if( vendor ) {
-			//check pword
-			var validPassword = vendor.comparePassword( req.body.password )
-			if( !validPassword ) {
-				res.json( {success: false, message: "auth failed, re-evaluate your life"})
-			} else {
-				//pword is good
-				var token = jwt.sign( {
-					name: vendor.name,
-					email: vendor.email
-				}, mySpecialSecret, {
-					expiresInMinutes: 1440
-				})
-				//gives the JWT to authenticated used
-				res.json( { success: true, message: "enjoy the token", token: token})
-			}
-		}
-	})
-})
+module.exports = vendorRouter
+
+
+// vendorRouter.post( '/login', function( req, res ) {
+// 	//find the vendor in DB
+// 	Vendor.findOne( {
+// 		email: req.body.email
+// 	}).select( 'name email password' ).exec( function( err, vendor ) {
+// 		if( err ) throw err
+// 		if( !vendor ) {
+// 			res.json( {success: false, message: "auth failed, vendor not found"})
+// 		} else if( vendor ) {
+// 			//check pword
+// 			var validPassword = vendor.comparePassword( req.body.password )
+// 			if( !validPassword ) {
+// 				res.json( {success: false, message: "auth failed, re-evaluate your life"})
+// 			} else {
+// 				//pword is good
+// 				var token = jwt.sign( {
+// 					name: vendor.name,
+// 					email: vendor.email
+// 				}, mySpecialSecret, {
+// 					expiresInMinutes: 1440
+// 				})
+// 				//gives the JWT to authenticated used
+// 				res.json( { success: true, message: "enjoy the token", token: token})
+// 			}
+// 		}
+// 	})
+// })
 
 // vendorRouter.use( function( req, res, next ) {
 
@@ -72,4 +77,3 @@ vendorRouter.post( '/login', function( req, res ) {
 // })
 
 
-module.exports = vendorRouter
