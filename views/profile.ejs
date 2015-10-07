@@ -1,13 +1,12 @@
-<div style="width: 250px; height: 250px; margin: auto" id="map">
-
+<div style="width: 250px; height: 250px; margin: auto" id="map"></div>
 <script>
 
 
   var myjson;
   $.getJSON("/vendors/", function(json) {
     console.log("json")
-    console.log()
     myjson = json;
+    $("#map").trigger("json:loaded")
   });
 
 
@@ -29,6 +28,7 @@ function addMarker( position, map ){
   //})
 }
 
+$("#map").on("json:loaded", initMap );
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -55,27 +55,35 @@ function initMap() {
          // Browser doesn't support Geolocation
          handleLocationError(false, infoWindow, map.getCenter());
       } 
-      //On event of "restaurants:loaded"
       // loop through restaurants and add marker for each: addMarker( `position`, mapToPopulate )
       var vendorMarkers = [];
-      for (var i=0; i < (myjson.length); i++) {
-        var vendorInfo = myjson[i];
-        var vendorPosition = new google.mapsLatLng(vendorInfo.latitude, vendorInfo.longitude);
+      for (var i=0; i < (myjson.length-1); i++) {
+        var vendorInfo = myjson[i].local;
+        console.log(vendorInfo.latitude, vendorInfo.longitude)
+        //var vendorPosition = new google.maps.LatLng("34.0219", "-118.4814")
+        var vendorPosition = new google.maps.LatLng(vendorInfo.longitude, vendorInfo.latitude);
+        
         var vendorMarker = new google.maps.Marker({
           position: vendorPosition,
-          map: map,
-          icon: large_green
+          map: map
         });
-        //vendorMarkers.push(vendorMarker);
-        //getVendorInfo( vendorInfo, vendorMarker);
-        vendorMarker.setMap( map )
-      }
 
-      google.maps.event.addListener(map, "click", function( position ) {
+        vendorMarkers.push(vendorMarker);
+        //getVendorInfo( vendorInfo, vendorMarker);
+        //vendorMarker.setMap( map )
+      }
+      //console.log(vendorMarkers);
+      /*google.maps.event.addListener(map, "click", function( position ) {
         console.log( position )
         addMarker( position, map )
-      })
-    }
+      })*/
+        var vendorPosition1 = new google.maps.LatLng(34.0219, -120.4814)
+          var marker = new google.maps.Marker({
+              position: vendorPosition1,
+                  map: map
+              });
+
+}
 
 
 
@@ -85,16 +93,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                        'Error: The Geolocation service failed.' :
                        'Error: Your browser doesn\'t support geolocation.');
 }
-window.onload = initMap
-
-   </script>
+  </script>
   
- 
-
-
-
-
-</div>
 
 
 <div class="container">
