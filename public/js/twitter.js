@@ -3,6 +3,12 @@ $(function (){
 
   socket.on('connect', function() {
     console.log('Connected!');
+
+
+	event.preventDefault();
+    var search_term = "%23mealdeal";
+    socket.emit('updateTerm', search_term);
+	console.log('Searching for: ' + search_term);
   });
 
   socket.on('tweets', function(tweet) {
@@ -10,15 +16,15 @@ $(function (){
     $('#tweet-container').prepend(html);
   });
 
-  $('#tweetBtn').on('click', function(){
-    event.preventDefault();
-    var search_term = $('input').val();
-    socket.emit('updateTerm', search_term);
-  });
+  // $(document).on('click', function(){
+  //   event.preventDefault();
+  //   var search_term = "obama";
+  //   socket.emit('updateTerm', search_term);
+  // });
 
-  socket.on('updatedTerm', function(searchTerm) {
-    $('h1').text("Twitter is searching for "+ searchTerm);
-    console.log(searchTerm);
-  });
+  // socket.on('updatedTerm', function(searchTerm) {
+  //   $('h1').text("Twitter is searching for "+ searchTerm);
+  //   console.log(searchTerm);
+  // });
 
 });

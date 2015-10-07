@@ -94,6 +94,8 @@ io.on( 'connection', function( socket ) {
       stream.stop();
     }
 
+
+
     stream = twitter.stream( 'statuses/filter', { track: searchTerm, language: 'en' });
 
     stream.on( 'tweet', function ( tweet ) {
