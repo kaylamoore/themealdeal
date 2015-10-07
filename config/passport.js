@@ -6,7 +6,7 @@ var LocalStrategy		= require('passport-local').Strategy,
 	User				= require('../app/models/user'),
 	Vendor 				= require('../app/models/vendor'),
 
-	configAuth			= require('./auth');
+	configAuth			= require('./auth'); 	
 	
 module.exports = function(passport){
 
@@ -173,15 +173,15 @@ module.exports = function(passport){
     }));
 
 
-var newUser	= new User();
+// var newUser	= new User();
 
-newUser.local.email 	= 'newpassport@gmail.com';
-newUser.local.password 	= newUser.generateHash('password');
-newUser.local.isvendor = true;
-newUser.local.businessname = 'adb';
-newUser.local.longditude = 1234;
-newUser.local.latitude = 1234;
-newUser.save();
+// newUser.local.email 	= 'newpassport@gmail.com';
+// newUser.local.password 	= newUser.generateHash('password');
+// newUser.local.isvendor = true;
+// newUser.local.businessname = 'adb';
+// newUser.local.longditude = 1234;
+// newUser.local.latitude = 1234;
+// newUser.save();
 
 };
 
