@@ -1,4 +1,5 @@
 var mongoose 	= require( 'mongoose' ),
+	userSchema	= require ('./user.js')
 	Schema		= mongoose.Schema,
 
 // makes the deal schema
@@ -7,7 +8,9 @@ var mongoose 	= require( 'mongoose' ),
 		title:  {type: String, required: true},
 		price:  {type: Number, required: true},
 		// date:  	{type: Date, required: true},
-		// vendor: [vendorSchema],
+		vendor: String,
+		longditude: Number,
+		latitude: Number,
 		created_at: Date
 	})
 

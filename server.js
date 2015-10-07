@@ -17,9 +17,10 @@ var express 		= require( "express" ),
 	dealRouter 		= require( './app/routes/dealRoutes' ),
 	vendorRouter	= require( './app/routes/vendorRoutes' ),
 	userRouter		= require( './app/routes/userRoutes' ),
+	apiRouter		= require( './app/routes/apiRoutes'),
 	helpers			= require( 'express-helpers' ),
 	path 			= require( 'path' ),
-	Twit			= require( 'twit' )
+	Twit			= require( 'twit' );
 
 
 
@@ -40,6 +41,7 @@ app.use( bodyParser.json() )
 app.use( flash() )
 helpers( app )
 
+
 app.set( "view engine", "ejs" ) //sets up ejs for templating
 app.use( expressLayouts )
 app.use( express.static( path.join( __dirname, 'public' ) ) )
@@ -58,18 +60,20 @@ app.use( passport.initialize() );
 app.use( passport.session() ); //persistent login session
 app.use( function ( req, res, next ){
 	console.log( "User: ", req.user )
-	console.log( "Vendor ", req.vendor )
 	global.user = req.user;
 	next()
 });
+
 // 	ROUTES
 //	======
+
+
 
 userRouter( app, passport ); //loads the routes and passes  in passport
 // app.use( '/users', userRouter ) when you get a request starting with users use the userRouter
 app.use( '/deals', dealRouter ); //when you get a request starting with deal use dealRouter
-app.use( '/vendors', vendorRouter )
-
+app.use( '/vendors', vendorRouter );
+app.use( '/api', apiRouter)
 
 
 
