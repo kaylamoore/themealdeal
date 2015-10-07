@@ -11,7 +11,7 @@ var express 		= require( "express" ),
 	morgan			= require( 'morgan' ),
 	cookieParser	= require( 'cookie-parser' ),
 	session			= require( 'express-session' ),
-	configDB 		= require( './config/database.js' ),
+	configDB 		= process.env.MONGOLAB_URI || 'mongodb:localhost:27017/mealdeal',
 	bodyParser 		= require( 'body-parser' ),
 	flash			= require( 'connect-flash' ),
 	dealRouter 		= require( './app/routes/dealRoutes' ),
@@ -28,7 +28,7 @@ var express 		= require( "express" ),
 //	CONFIG
 //	======
 
-mongoose.connect( configDB.url ) // connects to the database
+mongoose.connect( configDB ) // connects to the database
 
 require( "./config/passport" )( passport ) //passes in passport for configuration
 
