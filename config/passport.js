@@ -6,8 +6,8 @@ var LocalStrategy		= require('passport-local').Strategy,
 	User				= require('../app/models/user'),
 	Vendor 				= require('../app/models/vendor'),
 
-	configAuth			= require('./auth'); 	
-	
+	configAuth			= require('./auth');
+
 module.exports = function(passport){
 
 		//passport session sign in -- needed for persistent login
@@ -43,7 +43,7 @@ module.exports = function(passport){
 					if (user) {
 						return done(null, false, ( {message: 'That email is alraedy taken'} ))
 					} else {
-						
+
 						var newUser				= new User();
 
 						newUser.local.email 	= email;
@@ -184,5 +184,3 @@ module.exports = function(passport){
 // newUser.save();
 
 };
-
-		
