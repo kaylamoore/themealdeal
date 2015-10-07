@@ -8,7 +8,6 @@ var express 		= require( 'express' ),
 	bodyParser 		= require( 'body-parser' );
 
  function authenticatedUser( req, res, next ) {
- 		console.log( "function authenticate user" )
  		console.log( req.user )
     // If the user is authenticated, then we continue the execution
     if ( req.isAuthenticated() ) {

@@ -175,10 +175,10 @@ module.exports = function(passport){
 
 // var newUser	= new User();
 
-// newUser.local.email 	= 'newpassport@gmail.com';
+// newUser.local.email 	= 'new@gmail.com';
 // newUser.local.password 	= newUser.generateHash('password');
 // newUser.local.isvendor = true;
-// newUser.local.businessname = 'adb';
+// newUser.local.businessname = 'Joes Pizza';
 // newUser.local.longditude = 1234;
 // newUser.local.latitude = 1234;
 // newUser.save();
