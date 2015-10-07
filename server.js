@@ -34,7 +34,7 @@ require( "./config/passport" )( passport ) //passes in passport for configuratio
 
 require( 'express-helpers' )( app );
 // set up express application
-app.use( morgan( "dev" ) )
+//app.use( morgan( "dev" ) )
 app.use( cookieParser() ) //reads cookies which are needed for authentication
 app.use( bodyParser.urlencoded( { extended: true}) ) // gets info from the html form
 app.use( bodyParser.json() )

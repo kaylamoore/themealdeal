@@ -9,6 +9,9 @@ apiRouter.route( '/deals' )
 apiRouter.route( '/users' )
 	.get(apiController.users)
 
+apiRouter.route( '/vendors' )
+	.get(apiController.vendors)
+
 // apiRouter.route( '/vendors' )
 // 	.get(apiController.vendors)
 

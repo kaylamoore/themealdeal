@@ -23,18 +23,18 @@ function users ( req, res ) {
 	})
 }
 
-// function vendors ( req, res ) {
-// //gets all deals
-// 	User.find( function( err, deals ) {
-// 	if( err ) res.send ( err )
-// 		// res.json( deals )
-// 		res.json (user.isvendor);
+function vendors ( req, res ) {
+//gets all vendors
+	User.find({ isvendor: true })( function (err, vendors) {
+		if( err ) res.send ( err )
+			res.json ( vendors )
+	})	
+		
+	}
 
-// 	})
-// }
 
 module.exports = {
 	deals	: deals,
 	users	: users,
-	// vendors	: vendors
+	vendors	: vendors
 }
