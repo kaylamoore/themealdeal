@@ -3,9 +3,9 @@ var mongoose = require( 'mongoose' ),
 	bcrypt = require( 'bcrypt-nodejs' )
 	//defines the schems
 var vendorSchema = new Schema( {
-	
-	email: String, 
-	password: String 
+
+	email: String,
+	password: String
 
 })
 

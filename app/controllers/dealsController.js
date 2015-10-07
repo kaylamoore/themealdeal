@@ -13,18 +13,19 @@ function index ( req, res ) {
 function create ( req, res ) {
 	//makes a single deal
 
-	console.log( vendor )
+	console.log( global.user )
 	var deal 	= new Deal()
 
 	deal.title	= req.body.title
 	deal.price	= req.body.price
-	// deal.vendorid = vendor
-	// deal.date	= req.body.data
+	deal.vendor = global.user.local.businessname
+	deal.longditude = global.user.local.longditude
+	deal.latitude = global.user.local.latitude
 
 	deal.save( function( err ) {
 		if ( err ) res.send( err )
 		//res.json( {success: true, message: "Deal created"})
-		res.redirect( '/deals' );
+		res.redirect( '/' );
 
 	})
 }
