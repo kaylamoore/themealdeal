@@ -7,7 +7,7 @@ var mongoose	= require( 'mongoose' ),
 		local		: {
 			email	: String,
 			password: String,
-			isvendor: Boolean,
+			isvendor: { type: Boolean,  default: 0 },
 			businessname: String,
 			longditude: Number,
 			latitude: Number

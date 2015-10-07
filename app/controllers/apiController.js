@@ -25,12 +25,12 @@ function users ( req, res ) {
 
 function vendors ( req, res ) {
 //gets all vendors
-	User.find({ isvendor: true })( function (err, vendors) {
+	User.find({ "local.isvendor": true }, ( function ( err, vendors ) {
 		if( err ) res.send ( err )
-			res.json ( vendors )
-	})	
-		
-	}
+		res.json ( vendors )
+		}))		
+}
+
 
 
 module.exports = {
