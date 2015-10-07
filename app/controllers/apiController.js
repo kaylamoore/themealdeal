@@ -1,7 +1,16 @@
+var Deal 	= require( '../models/deal.js' )
+
+
 function index ( req, res ) {
-	//gets a single deal
-	Deal.find( {} ), function( err, deal ) {
-		if( err ) res.send( err )
-		res.json( deal )
-	}
+//gets all deals
+	Deal.find( function( err, deals ) {
+	if( err ) res.send ( err )
+		// res.json( deals )
+		res.json (deals);
+
+	})
+}
+
+module.exports = {
+	index	: index,
 }
