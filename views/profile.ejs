@@ -3,7 +3,7 @@
 
 
   var myjson;
-  $.getJSON("/vendors/", function(json) {
+  $.getJSON("../api/deals", function(json) {
     console.log("json")
     myjson = json;
     $("#map").trigger("json:loaded")
@@ -58,7 +58,7 @@ function initMap() {
       // loop through restaurants and add marker for each: addMarker( `position`, mapToPopulate )
       var vendorMarkers = [];
       for (var i=0; i < (myjson.length-1); i++) {
-        var vendorInfo = myjson[i].local;
+        var vendorInfo = myjson[i];
         console.log(vendorInfo.latitude, vendorInfo.longitude)
         //var vendorPosition = new google.maps.LatLng("34.0219", "-118.4814")
         var vendorPosition = new google.maps.LatLng(vendorInfo.longitude, vendorInfo.latitude);

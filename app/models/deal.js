@@ -9,7 +9,7 @@ var mongoose 	= require( 'mongoose' ),
 		price:  {type: Number, required: true},
 		// date:  	{type: Date, required: true},
 		vendor: String,
-		longditude: Number,
+		longitude: Number,
 		latitude: Number,
 		created_at: Date
 	})

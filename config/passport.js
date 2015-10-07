@@ -173,9 +173,9 @@ module.exports = function( passport ){
     } ) );
 
 
-//  var newUser	= new User();
+//   var newUser	= new User();
 
-// newUser.local.email 	= 'newpassport@gmail.com';
+// newUser.local.email 	= 'deals2@gmail.com';
 // newUser.local.password 	= newUser.generateHash('password');
 // newUser.local.isvendor = true; 
 // newUser.local.businessname = 'adb';
@@ -183,4 +183,4 @@ module.exports = function( passport ){
 // newUser.local.latitude = "-118.4814";
 // newUser.save();
 
-// };
+};

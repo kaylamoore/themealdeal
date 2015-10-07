@@ -19,7 +19,7 @@ function create ( req, res ) {
 	deal.title	= req.body.title
 	deal.price	= req.body.price
 	deal.vendor = global.user.local.businessname
-	deal.longditude = global.user.local.longditude
+	deal.longitude = global.user.local.longitude
 	deal.latitude = global.user.local.latitude
 
 	deal.save( function( err ) {

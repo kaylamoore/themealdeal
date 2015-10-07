@@ -9,7 +9,7 @@ var mongoose	= require( 'mongoose' ),
 			password: String,
 			isvendor: { type: Boolean,  default: 0 },
 			businessname: String,
-			longditude: Number,
+			longitude: Number,
 			latitude: Number
 		},
 		facebook	: {
