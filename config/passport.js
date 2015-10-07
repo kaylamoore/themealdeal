@@ -173,78 +173,16 @@ module.exports = function(passport){
     }));
 
 
-		
-		//VENDOR SIGNUP
+var newUser	= new User();
 
-		passport.use('vendor-signup', new LocalStrategy({
-			usernameField: 'vendoremail',
-			passwordField: 'vendorpassword',
-			passReqToCallback: true // passes through the request back to the callback
+newUser.local.email 	= 'newpassport@gmail.com';
+newUser.local.password 	= newUser.generateHash('password');
+newUser.local.isvendor = true;
+newUser.local.businessname = 'adb';
+newUser.local.longditude = 1234;
+newUser.local.latitude = 1234;
+newUser.save();
 
-
-		},
-
-		function(req, email, password, done) {
-
-			//this is asynchronous so User.findOne won't fire unless data sent back
-			process.nextTick(function(){
-
-			Vendor.findOne({ 'local.email' : email }, function(err, vendor){
-				if (err)
-					return done (err);
-
-				//check to see if there is a vendor
-				if (vendor) {
-					return done(null, false, ( {message: 'That email is already taken'} ))
-				} else {
-				
-					var newVendor				= new Vendor();
-
-					newVendor.local.email 		= email;
-					newVendor.local.password 	= newVendor.generateHash(password);
-					
-					newVendor.save(function(err) {
-						if (err)
-							throw err;
-						return done(null, newVendor);
-					});
-				}
-			});
-
-
-			});
-		}));
-
-		//	VENDOR LOGIN
-
-		passport.use('vendor-login', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
-        usernameField: 'email',
-		passwordField: 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
-    	},
-
-	function(req, email, password, location, done) { // callback with email and password from our form
-
-        // find a user whose email is the same as the forms email
-        // we are checking to see if the user trying to login already exists
-        Vendor.findOne({ 'local.email' :  email }, function(err, vendor) {
-            // if there are any errors, return the error before anything else
-            if (err)
-                return done(err);
-
-            // if no user is found, return the message
-            if (!vendor)
-                return done
-            // if the user is found but the password is wrong
-            if (!vendor.validPassword(password))
-                return done
-            // all is well, return successful user
-            return done(null, vendor);
-        });
-
-    }));
 };
-
 
 		

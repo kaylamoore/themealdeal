@@ -3,10 +3,11 @@ var mongoose = require( 'mongoose' ),
 	bcrypt = require( 'bcrypt-nodejs' )
 	//defines the schems
 var vendorSchema = new Schema( {
-	name: String,
-	email: { type: String, required: true, unique: true },
-	password: { type: String, required: true, select: false }
-} )
+	
+	email: String, 
+	password: String 
+
+})
 
 
 //hash the pword of a vendor before save
@@ -29,4 +30,4 @@ vendorSchema.methods.comparePassword = function( password ){
 	return bcrypt.compareSync( password, vendor.password )
 }
 
-module.exports = mongoose.model( 'vendor', vendorSchema )
+module.exports = mongoose.model( 'Vendor', vendorSchema )

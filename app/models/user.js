@@ -7,6 +7,10 @@ var mongoose	= require( 'mongoose' ),
 		local		: {
 			email	: String,
 			password: String,
+			isvendor: Boolean,
+			businessname: String,
+			longditude: Number,
+			latitude: Number
 		},
 		facebook	: {
 			id		: String,
