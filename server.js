@@ -46,7 +46,7 @@ app.set( "view engine", "ejs" ) //sets up ejs for templating
 app.use( expressLayouts )
 app.use( express.static( path.join( __dirname, 'public' ) ) )
 app.engine( "ejs", require( "ejs" ).renderFile )
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join( __dirname, 'views'));
 
 
 // passport requirements
