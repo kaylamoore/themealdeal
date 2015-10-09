@@ -39,10 +39,11 @@ DEPENDENCIES :
 - Passport Facebook
 - Socket.io
 - Twitter (twit)
-
+<br>
 Server.js 
-<img src = "http://s24.postimg.org/91h3ibqmd/Screen_Shot_2015_10_09_at_9_13_54_AM.png">
-
+<br>
+<img src = "http://s1.postimg.org/tfe6kbd5r/Screen_Shot_2015_10_09_at_9_13_54_AM.png">
+<br>
 CONTROLLERS : 
 - apiController
 - dealsController
