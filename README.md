@@ -117,3 +117,9 @@ HOME PAGE :
 <img src = "http://s22.postimg.org/9oxlglitt/Screen_Shot_2015_10_09_at_9_41_13_AM.png"> 
 <br> 
 <img src = "http://s24.postimg.org/puzsaksjp/Screen_Shot_2015_10_09_at_9_45_51_AM.png">
+
+SIGN UP PAGE : 
+- Page where user creates an account 
+<br>
+<img src ="http://s8.postimg.org/tmu7qn5np/Screen_Shot_2015_10_09_at_9_47_36_AM.png"> 
+<br>
