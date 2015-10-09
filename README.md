@@ -20,6 +20,7 @@ The Meal Deal is an app that allows users to find food specials near them.
 - Vendors post a deal - the menu item and the price 
 
 #### FEATURES : 
+- O-Auth with Facebook 
 - Google Maps API 
 - Twitter API 
 
@@ -120,6 +121,17 @@ HOME PAGE :
 
 SIGN UP PAGE : 
 - Page where user creates an account 
+- Option to create an account using Facebook o-auth
 <br>
 <img src ="http://s8.postimg.org/tmu7qn5np/Screen_Shot_2015_10_09_at_9_47_36_AM.png"> 
 <br>
+
+LOGIN PAGE :
+- Login Page with option to log in with Facebook 
+<br>
+<img src="http://s12.postimg.org/mnd1atzm5/Screen_Shot_2015_10_09_at_9_51_51_AM.png">
+<br>
+
+USER PROFILE : 
+<br>
+<img src="">
