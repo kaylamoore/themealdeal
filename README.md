@@ -1,5 +1,5 @@
 ## PROJECT THREE - THE MEAL DEAL 
-#### LINK : *insert link* 
+#### LINK : https://wearethemealdeal.herokuapp.com
 
 The Meal Deal is an app that allows users to find food specials near them. 
 
