@@ -112,5 +112,8 @@ HOME PAGE :
 - Collage of food to entice a user to sign up 
 - MealDeal logo created in Adobe Photoshop
 - Navigation bar to provide easy user experience to view Home, Profile, Deals, Login, and Sign Up pages 
+- Tweets and Deals displayed side by side 
 <br>
 <img src = "http://s22.postimg.org/9oxlglitt/Screen_Shot_2015_10_09_at_9_41_13_AM.png"> 
+<br> 
+<img src = "http://s24.postimg.org/puzsaksjp/Screen_Shot_2015_10_09_at_9_45_51_AM.png">
