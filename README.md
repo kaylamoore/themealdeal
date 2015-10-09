@@ -47,7 +47,6 @@ CODE : <br>
 - Live feed of Twitter * 
 
 
-
 #### DEPENDENCIES : 
 - Bcrypt for password encryption 
 - Body-parser 
@@ -105,3 +104,13 @@ Server.js
 - tweets
 - vendor_signup
 - vendors_profile 
+
+#### WIRE FRAMES : 
+
+HOME PAGE : 
+- Home page of app 
+- Collage of food to entice a user to sign up 
+- MealDeal logo created in Adobe Photoshop
+- Navigation bar to provide easy user experience to view Home, Profile, Deals, Login, and Sign Up pages 
+<br>
+<img src = "http://s22.postimg.org/9oxlglitt/Screen_Shot_2015_10_09_at_9_41_13_AM.png"> 
