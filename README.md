@@ -28,7 +28,7 @@ The Meal Deal is an app that allows users to find food specials near them.
 - Utilizes Google Maps API in order to grab users location upon login 
 - Used to plot marker for each vendor location in relation to the user 
 
-#### HOW THE CODE WAS UTILIZED : <br>
+ CODE : <br>
     <img src="http://s27.postimg.org/8kiklvymb/Screen_Shot_2015_10_09_at_9_21_30_AM.png"> <br>
     <img src="http://s2.postimg.org/8et0a673d/Screen_Shot_2015_10_09_at_9_21_52_AM.png"> <br>
     <br>
@@ -59,7 +59,8 @@ Server.js
 <br>
 <img src = "http://s1.postimg.org/tfe6kbd5r/Screen_Shot_2015_10_09_at_9_13_54_AM.png">
 <br><br><br><br>
-CONTROLLERS : 
+
+#### CONTROLLERS : 
 - apiController
 - dealsController
 - vendorsController 
