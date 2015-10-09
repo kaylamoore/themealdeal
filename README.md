@@ -32,13 +32,16 @@ DEPENDENCIES :
 - Express-ejs-layouts
 - Express-helpers
 - Express - session
-- Json WEb Token 
+- Json Web Token 
 - Mongoose
 - Morgan 
 - Passport
 - Passport Facebook
 - Socket.io
 - Twitter (twit)
+
+Server.js 
+<img src = "http://s24.postimg.org/91h3ibqmd/Screen_Shot_2015_10_09_at_9_13_54_AM.png">
 
 CONTROLLERS : 
 - apiController
