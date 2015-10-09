@@ -19,10 +19,25 @@ FOR A VENDOR :
 - Vendors are assigned a location by an admin 
 - Vendors post a deal - the menu item and the price 
 
+FEATURES : 
+- Google Maps API 
+- Twitter API 
+
+
+GOOGLE MAPS API : 
+- Utilizes Google Maps API in order to grab users location upon login 
+- Used to plot marker for each vendor location in relation to the user 
+
+HOW THE CODE WAS UTILIZED : <br>
+    <img src = "http://s1.postimg.org/tfe6kbd5r/Screen_Shot_2015_10_09_at_9_13_54_AM.png"> <br>
+    <img src = "http://s2.postimg.org/8et0a673d/Screen_Shot_2015_10_09_at_9_21_52_AM.png"> <br>
+    <br>
 
 FEATURES WE'D LIKE TO INCLUDE IN THE FUTURE :
 - Allowing vendor to post a picture of the deal using Paperclip 
 - Live feed of Twitter * 
+
+
 
 DEPENDENCIES : 
 - Bcrypt for password encryption 
@@ -39,11 +54,11 @@ DEPENDENCIES :
 - Passport Facebook
 - Socket.io
 - Twitter (twit)
-<br>
+<br><br>
 Server.js 
 <br>
 <img src = "http://s1.postimg.org/tfe6kbd5r/Screen_Shot_2015_10_09_at_9_13_54_AM.png">
-<br>
+<br><br><br><br>
 CONTROLLERS : 
 - apiController
 - dealsController
