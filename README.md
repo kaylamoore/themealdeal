@@ -33,6 +33,15 @@ The Meal Deal is an app that allows users to find food specials near them.
     <img src="http://s2.postimg.org/8et0a673d/Screen_Shot_2015_10_09_at_9_21_52_AM.png"> <br>
     <br>
 
+
+#### TWITTER API: 
+- Tracks the hashtag "#mealdeal" and adds it to feed 
+
+CODE : <br>
+<img src= "http://s2.postimg.org/65e2qwcx5/Screen_Shot_2015_10_09_at_9_26_43_AM.png"> <br>
+<img src= "http://s11.postimg.org/in6kluwtv/Screen_Shot_2015_10_09_at_9_27_08_AM.png"> <br>
+
+
 #### FEATURES WE'D LIKE TO INCLUDE IN THE FUTURE :
 - Allowing vendor to post a picture of the deal using Paperclip 
 - Live feed of Twitter * 
